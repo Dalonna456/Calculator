@@ -1,53 +1,48 @@
-let number = document.querySelectorAll('.number');
-    console.log(number);
+const doMath = (a, sign, b) =>{
+    switch(sign){
+        case "+":
+            return a + b;
+        case "-":
+            return a - b;
+        case "/":
+            return a / b;
+        case "*":
+            return a * b;
+    }
+    console.log(doMath)
+}
 
-let operations = document.querySelectorAll('.operation');
-    console.log(operations);
+const validSigns = ['+', '-','/', '*', '=', '%'];
 
-let decimalBtn = document.getElementById('decimal');
-    console.log(decimalBtn);
+const parseInput = (inputString)=>{
+    const chars = inputString.split('');
+    const res = [];
 
-let result = document.getElementById('result');
-    console.log(result);
+    let previosNumbers = "";
 
-let ce = document.getElementById('ce');
-    console.log(ce);
+    for(let char of chars){
 
+        if(validSigns.includes(char)){
 
-for(let i=0; i<number.length; i++){
-    let nmb = number[i];
-      nmb.addEventListener('click', numberPress);
-};
+            if(previosNumbers!==""){
+                res.push(Number(previosNumbers));
+            }
+            res.push(char);
 
-for(let i=0; i<operations.length; i++){
-    let operationBtn = operations[i];
-      operationBtn.addEventListener('click', operation);
-};
+            continue;
+        
 
- 
-ce.addEventListener('click', function(e){
-    console.log('Click on the button delete ');
-});
+        };
 
-result.addEventListener('click', function(e){
-    console.log('Click on the button with a result ');
-});
+        if(Number(char)!==NaN){
+            previosNumbers +=char;
+        };
 
-decimalBtn.addEventListener('click', function(e){
-    console.log('Click on the button with a decimal ');
-});
+    if(previosNumbers !==""){
+        res.push(previosNumbers);
+        };
+        
+    return res;
 
-
-function numberPress(){
-    console.log('Click on the button with a number ');
-};
-
-function operation(){
-    console.log('Click on the button with an operation ');
-};
-
-function decimal(){
-    console.log('Click on the button with a decimal ');
-};
-
-
+}
+}
